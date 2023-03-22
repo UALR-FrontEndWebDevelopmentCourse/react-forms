@@ -1,5 +1,6 @@
-import {createStore} from 'redux';
-import {combineForms, createForms} from 'react-redux-form';
+import {combineReducers, createStore} from 'redux';
+import {createForms} from 'react-redux-form';
+import appReducer from "./reducer";
 
 const initialUserState = {
     firstName: '',
@@ -7,9 +8,11 @@ const initialUserState = {
 };
 
 // If you want your entire store to have the form state...
-const store = createStore(combineForms({
-    use:initialUserState,
+const store = createStore(combineReducers({
+    output: appReducer,
+    ...createForms({
+        user: initialUserState,
+    }),
 }))
-
 
 export default store;
