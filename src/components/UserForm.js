@@ -7,10 +7,14 @@ function UserForm() {
 
     const dispatch = useDispatch()
 
+    function handleSubmit (user) {
+        dispatch({type:'infoSubmitted', payload: user})
+    }
+
     return (
         <Form
             model="user"
-            onSubmit={(user) => dispatch({type:'infoSubmitted', payload: user})}
+            onSubmit={(user) => handleSubmit(user)}
         >
             <label htmlFor="user.firstName">First name:</label>
             <Control.text model="user.firstName" id="user.firstName"/>
